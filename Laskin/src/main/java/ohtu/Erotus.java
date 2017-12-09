@@ -16,6 +16,7 @@ public class Erotus implements Komento {
     private final Sovelluslogiikka sovellus;
     private final JTextField tuloskentta;
     private final JTextField syotekentta;
+    private int edellinen;
 
     Erotus(Sovelluslogiikka sovellus, JTextField tuloskentta, JTextField syotekentta) {
         this.sovellus = sovellus;
@@ -25,8 +26,9 @@ public class Erotus implements Komento {
 
     @Override
     public void suorita() {
+        edellinen = sovellus.tulos();
         int arvo = 0;
-        
+
         try {
             arvo = Integer.parseInt(syotekentta.getText());
         } catch (Exception e) {
@@ -38,10 +40,10 @@ public class Erotus implements Komento {
         tuloskentta.setText("" + sovellus.tulos());
     }
 
-
     @Override
     public void peru() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        syotekentta.setText("");
+        tuloskentta.setText("" + edellinen);
     }
-    
+
 }
